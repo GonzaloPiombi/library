@@ -36,7 +36,7 @@ function displayBook() {
     newDiv = document.createElement('div');
     for (let i = 0; i < myLibrary.length; i++) {
         readButton = document.createElement('button');
-        readButton.textContent = myLibrary[i].readOrNot === 'No' ? 'Read' : 'Not read';
+        readButton.textContent = myLibrary[i].readOrNot === 'Yes' ? 'Read' : 'Not read';
         removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         container.appendChild(newDiv);
