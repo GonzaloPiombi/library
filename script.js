@@ -16,6 +16,10 @@ function Book(title, author, pages, readOrNot) {
     this.readOrNot = readOrNot
 }
 
+Book.prototype.toggleRead = function() {
+    this.readOrNot = this.readOrNot === 'No' ? 'Yes' : 'No';
+}
+
 function addBookToLibrary() {
     let getData = new FormData(data);
     const title = getData.get('title');
@@ -31,13 +35,17 @@ function addBookToLibrary() {
 function displayBook() {
     newDiv = document.createElement('div');
     for (let i = 0; i < myLibrary.length; i++) {
+        readButton = document.createElement('button');
+        readButton.textContent = myLibrary[i].readOrNot === 'No' ? 'Read' : 'Not read';
         removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         container.appendChild(newDiv);
         newDiv.setAttribute('data-index', i);
-        container.querySelectorAll('div')[i].textContent = myLibrary[i].title + ' ' + myLibrary[i].author + ' ' + myLibrary[i].pages + ' ' + myLibrary[i].readOrNot;
+        container.querySelectorAll('div')[i].textContent = myLibrary[i].title + ' ' + myLibrary[i].author + ' ' + myLibrary[i].pages;
+        container.querySelectorAll('div')[i].appendChild(readButton);
         container.querySelectorAll('div')[i].appendChild(removeButton);
-        removeButton.addEventListener('click', (e) => { removeBookAndUpdateIndex(e); });
+        removeButton.addEventListener('click', e => { removeBookAndUpdateIndex(e); });
+        readButton.addEventListener('click', e => { toggleReadStatus(e) });
     }
 }
 
@@ -48,4 +56,10 @@ function removeBookAndUpdateIndex(e) {
     for (let j = 0; j < container.querySelectorAll('div').length; j++) {
         container.querySelectorAll('div')[j].setAttribute('data-index', j);
     }
+}
+
+function toggleReadStatus(e) {
+    pressedBook = e.currentTarget.parentNode.dataset.index
+    e.currentTarget.textContent = e.currentTarget.textContent === 'Read' ? 'Not read' : 'Read';
+    myLibrary[pressedBook].toggleRead();
 }
