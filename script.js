@@ -36,6 +36,7 @@ function displayBook() {
     newDiv = document.createElement('div');
     for (let i = 0; i < myLibrary.length; i++) {
         container.appendChild(newDiv);
+        newDiv.classList.add('book-card');
         newDiv.setAttribute('data-index', i);
         container.querySelectorAll('div')[i].textContent = '';
         createBookInfo(i);
@@ -54,19 +55,26 @@ function removeBookAndUpdateIndex(e) {
 function toggleReadStatus(e) {
     pressedBook = e.currentTarget.parentNode.dataset.index
     e.currentTarget.textContent = e.currentTarget.textContent === 'Read' ? 'Not read' : 'Read';
+    if (e.currentTarget.classList.contains('read-button')) {
+        e.currentTarget.classList.add('not-read-button');
+        e.currentTarget.classList.remove('read-button');
+    } else {
+        e.currentTarget.classList.add('read-button');
+        e.currentTarget.classList.remove('not-read-button');
+    }
     myLibrary[pressedBook].toggleRead();
 }
 
 function createBookInfo(i) {
     const title = document.createElement('h2');
-    const author = document.createElement('h2');
-    const pages = document.createElement('h2');
+    const author = document.createElement('h3');
+    const pages = document.createElement('h4');
     const readButton = document.createElement('button');
     const removeButton = document.createElement('button');
 
-    title.textContent = myLibrary[i].title;
+    title.textContent = `"${myLibrary[i].title}"`;
     author.textContent = myLibrary[i].author;
-    pages.textContent = myLibrary[i].pages;
+    pages.textContent = `${myLibrary[i].pages} pages`;
     readButton.textContent = myLibrary[i].readOrNot === 'Yes' ? 'Read' : 'Not read';
     removeButton.textContent = 'Remove';
 
@@ -75,6 +83,13 @@ function createBookInfo(i) {
     container.querySelectorAll('div')[i].appendChild(pages);
     container.querySelectorAll('div')[i].appendChild(readButton);
     container.querySelectorAll('div')[i].appendChild(removeButton);
+
+    if (myLibrary[i].readOrNot === 'Yes') {
+        readButton.classList.add('read-button');
+    } else {
+        readButton.classList.add('not-read-button');
+    }
+    removeButton.setAttribute('id', 'remove-button');
 
     readButton.addEventListener('click', e => { toggleReadStatus(e) });
     removeButton.addEventListener('click', e => { removeBookAndUpdateIndex(e); });
