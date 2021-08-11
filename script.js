@@ -1,13 +1,26 @@
 let myLibrary = [];
 const container = document.querySelector('.container');
 const addBookButton = document.querySelector('#add-book');
-const submitButton = document.querySelector('form button');
 const data = document.querySelector('form');
+const modal = document.querySelector('.modal')
 
 addBookButton.addEventListener('click', () => {
-    document.querySelector('form').style = 'display: flex';
+    modal.style = 'display: block';
+    data.style = 'display: flex';
 })
-submitButton.addEventListener('click', addBookToLibrary);
+
+data.addEventListener('submit', (e) => {
+    e.preventDefault();
+    addBookToLibrary();
+    document.querySelector('.modal').style = 'display: none';
+    data.reset();
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === modal || e.target === data) {
+        modal.style = 'display: none';
+    }
+});
 
 function Book(title, author, pages, readOrNot) {
     this.title = title
