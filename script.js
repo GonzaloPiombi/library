@@ -4,6 +4,10 @@ const addBookButton = document.querySelector('#add-book');
 const data = document.querySelector('form');
 const modal = document.querySelector('.modal')
 
+window.onload = function() {
+    getStorage();
+}
+
 addBookButton.addEventListener('click', () => {
     modal.style = 'display: block';
     data.style = 'display: flex';
@@ -41,6 +45,7 @@ function addBookToLibrary() {
     let readOrNot = getData.get('read');
     readOrNot = readOrNot === null ? 'No' : 'Yes'
     myLibrary.push(new Book(title, author, pages, readOrNot)); 
+    setStorage();
     displayBook();
 }
 
@@ -60,6 +65,7 @@ function removeBookAndUpdateIndex(e) {
     deletedBookIndex = e.currentTarget.parentNode.dataset.index;
     e.currentTarget.parentNode.remove();
     myLibrary.splice(deletedBookIndex, 1);
+    setStorage();
     for (let j = 0; j < container.querySelectorAll('div').length; j++) {
         container.querySelectorAll('div')[j].setAttribute('data-index', j);
     }
@@ -106,4 +112,21 @@ function createBookInfo(i) {
 
     readButton.addEventListener('click', e => { toggleReadStatus(e) });
     removeButton.addEventListener('click', e => { removeBookAndUpdateIndex(e); });
+}
+
+function setStorage() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function getStorage() {
+    let library = localStorage.getItem('myLibrary');
+    library = JSON.parse(library);
+    for (let i = 0; i < library.length; i++) {
+        const title = library[i].title;
+        const author = library[i].author;
+        const pages = library[i].pages;
+        const readOrNot = library[i].readOrNot;
+        myLibrary.push(new Book(title, author, pages, readOrNot)); 
+        displayBook();
+    }
 }
