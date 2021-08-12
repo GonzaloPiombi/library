@@ -43,6 +43,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
+    margin-bottom: 5%;
 }
 
 #add-book {
@@ -102,6 +103,7 @@ header {
     display: none;
     height: 100%;
     left: 0;
+    overflow: auto;
     padding-top: 10%;
     position: fixed;
     top: 0;
@@ -156,4 +158,67 @@ label {
     margin: auto;
     padding: 4%;
     width: 50%;
+}
+
+@media (max-width: 1400px) {
+    h2 {
+        font-size: 1.6rem;
+    }
+    
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 1100px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 850px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #add-book {
+        font-size: 1.5rem;
+    }
+
+    .modal {
+        padding: 0;
+    }
+
+    .form-container {
+        padding: 1% 2%;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    .input-box input {
+        height: 20px;
+    }
+}
+
+@media (max-width: 550px) {
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    #add-book {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+    }
+
+    
 }
