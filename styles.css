@@ -1,5 +1,5 @@
 body {
-    background-color: #FDF6F0;
+    background-color: #112D4E;
     color: #191919;
     font-family: 'Montserrat', sans-serif;
     margin: 4% 16%;
@@ -33,7 +33,7 @@ h4 {
 }
 
 .big-container {
-    background-color: #F8E2CF;
+    background-color: #5085c3;
     border-radius: 10px;
     padding: 5% 10%;
 }
@@ -47,16 +47,11 @@ header {
 }
 
 #add-book {
-    background-color: #f7e568;
+    background-color: #dbe2ef;
     border: solid 2px #6b6b6b;
     border-radius: 5px;
-    color: #6b6b6b;
     cursor: pointer;
     font-size: 2rem;
-}
-
-#add-book:active {
-    background-color: #d6c65d;
 }
 
 .container {
@@ -66,13 +61,13 @@ header {
 }
 
 .book-card {
-    background-color: #F5C6AA;
+    background-color: #DBE2EF;
     border: solid 2px black;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 8% 0;
+    padding: 8% 1%;
 }
 
 .book-card button {
@@ -90,11 +85,13 @@ header {
 }
 
 .not-read-button {
-    background-color: #f3a49b;
+    background-color: #675cbd;
+    color: white;
 }
 
 #remove-button {
-    background-color: #d83434d6;
+    background-color: #ce3b3b;
+    color: white;
     margin-bottom: 0;
 }
 
@@ -118,7 +115,7 @@ form {
 }
 
 .form-container {
-    background-color: #F8E2CF;
+    background-color: #dbe2ef;
     border: solid 2px black;
     border-radius: 5px;
     display: flex;
