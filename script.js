@@ -26,15 +26,17 @@ window.addEventListener('click', (e) => {
     }
 });
 
-function Book(title, author, pages, readOrNot) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.readOrNot = readOrNot
-}
+class Book {
+    constructor(title, author, pages, readOrNot) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readOrNot = readOrNot;
+    }
 
-Book.prototype.toggleRead = function() {
-    this.readOrNot = this.readOrNot === 'No' ? 'Yes' : 'No';
+    toggleRead() {
+        this.readOrNot = this.readOrNot === 'No' ? 'Yes' : 'No';
+    }
 }
 
 function addBookToLibrary() {
